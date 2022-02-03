@@ -2,12 +2,10 @@ import React, { Suspense, useLayoutEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "react-three-fiber";
 import { Loader, Torus, useTexture } from "@react-three/drei";
 import * as THREE from "three";
-import { Badge } from "@pmdrs/branding";
 import Environment from "@react-three/drei/Environment";
 
-import { DistortTorusMaterial } from "./DistorsTorusMaterial";
+import { DistortTorusMaterial } from "./DistortTorusMaterial";
 import "./styles.css";
-import Overlay from "./Overlay";
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.useAgent);
 
@@ -29,10 +27,7 @@ function DistortedTorus() {
 
   useLayoutEffect(() => {
     textures.forEach(
-      (texture) => (
-        (texture.wrapT = texture.wrapS = THREE.RepeatWrapping),
-        texture.repeat.set(4, 4)
-      )
+      (texture) => (texture.wrapT = texture.wrapS = THREE.RepeatWrapping)
     );
   }, [textures]);
 
@@ -87,8 +82,6 @@ function App() {
         </group>
       </Canvas>
       <Loader />
-      <Badge />
-      <Overlay />
     </>
   );
 }
